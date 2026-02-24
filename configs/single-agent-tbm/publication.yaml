@@ -1,0 +1,33 @@
+# H-002 publication config: 15 independent runs for TOST equivalence testing.
+# Based on default.yaml with num_runs increased for statistical rigor.
+experiment:
+  name: h002-publication
+  output_dir: results/single-agent-tbm/publication
+  seed: 42
+
+environment:
+  width: 50.0
+  height: 50.0
+  resolution: 0.1
+  obstacles: 5
+  rooms: 3
+  corridors: 4
+  dynamic_objects: 3
+  dynamic_speed: 0.5
+
+robots:
+  count: 1
+  trajectory_steps: 500
+
+lidar:
+  max_range: 15.0
+  num_rays: 180
+  noise_stddev: 0.02
+
+sensor_model:
+  base_l_occ: 2.0
+  base_l_free: -0.5
+  distance_decay: 0.1
+  angle_decay: 0.5
+
+num_runs: 15

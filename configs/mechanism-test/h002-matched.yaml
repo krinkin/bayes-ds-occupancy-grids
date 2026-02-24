@@ -1,0 +1,49 @@
+# Mechanism test config matched to H-002 environment parameters.
+# Purpose: resolve C1 (mechanism test contradicts H-002 at 1 robot)
+# by re-running with the same environment that H-002 used.
+#
+# Source: configs/single-agent-tbm/default.yaml
+# Step: 1.6 of plan-v3-amended.md
+
+experiment:
+  name: mechanism-h002-matched
+  output_dir: results/mechanism-test/h002-matched
+  seed: 42
+
+environment:
+  width: 50.0
+  height: 50.0
+  resolution: 0.1
+  rooms: 3
+  corridors: 4
+  obstacles: 5
+  dynamic_objects: 0      # isolate fusion mechanism -- no dynamics
+  dynamic_speed: 0.5
+
+robots:
+  count: 2                # overridden by _make_config per robot_counts
+  trajectory_steps: 500   # overridden by _make_config (total_steps // num_robots)
+  drift_stddev: 0.02
+  angular_drift_stddev: 0.005
+
+lidar:
+  max_range: 15.0
+  num_rays: 180
+  noise_stddev: 0.02
+
+pgo:
+  enabled: true           # overridden by _make_config (false for 1 robot)
+  rendezvous_distance: 2.5
+
+fusion:
+  methods:                # overridden by _make_config
+    - bayesian_count
+    - dstbm
+
+metrics:                  # overridden by _make_config
+  - cell_accuracy
+  - boundary_sharpness
+
+logging:
+  grid_snapshot_interval: 0   # no snapshots for speed
+  format: json

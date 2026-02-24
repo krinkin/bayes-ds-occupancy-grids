@@ -1,0 +1,12 @@
+# SLAM Research Engine -- Python dependencies
+# Install: pip install -r requirements.txt
+
+# H-003 experiment: hybrid PGO + cell fusion comparison
+numpy>=2.4,<3.0
+scipy>=1.17,<2.0
+matplotlib>=3.10,<4.0
+pyyaml>=6.0,<7.0
+pytest>=8.0,<9.0
+
+# Publication statistical analysis
+statsmodels>=0.14,<1.0

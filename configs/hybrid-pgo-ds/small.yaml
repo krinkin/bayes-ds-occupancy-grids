@@ -1,0 +1,48 @@
+# Smoke test config -- runs fast, validates end-to-end pipeline
+experiment:
+  name: smoke
+  output_dir: results/hybrid-pgo-ds/smoke
+  seed: 42
+
+environment:
+  width: 10.0       # meters
+  height: 10.0
+  resolution: 0.1   # meters per cell (coarse for speed)
+  rooms: 1
+  obstacles: 2
+  dynamic_objects: 0
+
+robots:
+  count: 2
+  trajectory_steps: 50
+  drift_stddev: 0.01       # meters per step
+  angular_drift_stddev: 0.005  # radians per step
+
+lidar:
+  max_range: 5.0    # meters
+  num_rays: 60
+  noise_stddev: 0.02  # meters
+
+pgo:
+  enabled: true
+  rendezvous_distance: 2.0  # meters -- robots exchange data when this close
+
+fusion:
+  methods:
+    - bayesian
+    - bayesian_count
+    - dstbm
+
+metrics:
+  - cell_accuracy
+  - map_entropy
+  - frontier_quality
+  - boundary_sharpness
+  - dynamic_detection
+  - uncertainty_awareness
+  - resource_cost
+  - fault_tolerance
+
+logging:
+  grid_snapshot_interval: 10  # log grid state every N steps
+  format: json                # json or csv

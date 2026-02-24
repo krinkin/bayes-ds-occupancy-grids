@@ -1,0 +1,28 @@
+# H-002 smoke test config: small room, fast run
+experiment:
+  name: h002-small
+  output_dir: results/single-agent-tbm/small
+  seed: 42
+
+environment:
+  width: 10.0
+  height: 10.0
+  resolution: 0.1
+  obstacles: 2
+  dynamic_objects: 1
+  dynamic_speed: 0.5
+
+robots:
+  count: 1
+  trajectory_steps: 50
+
+lidar:
+  max_range: 8.0
+  num_rays: 60
+  noise_stddev: 0.02
+
+sensor_model:
+  base_l_occ: 2.0
+  base_l_free: -0.5
+  distance_decay: 0.1
+  angle_decay: 0.5

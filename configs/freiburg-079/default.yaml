@@ -1,0 +1,34 @@
+# Freiburg Building 079 validation experiment configuration.
+#
+# Uses the Freiburg 079 dataset (University of Freiburg, 2003) to validate
+# simulation findings on a second real 2D LiDAR dataset.
+# Pioneer2 robot with SICK LMS200 (360 beams, 180 deg FOV).
+
+data:
+  path: "data/freiburg-079/fr079-sm.log"
+
+grid:
+  resolution: 0.1       # meters per cell
+  max_range: 8.0         # max usable range (meters) -- SICK LMS200 indoors
+  train_fraction: 0.8    # 80% for mapping, 20% for evaluation
+
+sensor:
+  l_occ: 2.0    # Bayesian log-odds for occupied hit; DS/TBM masses matched via pignistic transform
+  l_free: -0.5  # Bayesian log-odds for free traversal
+
+experiment:
+  arms:
+    - bayesian
+    - bayesian_count
+    - dstbm
+    - yager
+  metrics:
+    - cell_accuracy
+    - boundary_sharpness
+    - brier_score
+  multi_robot_splits:
+    - 2
+    - 4
+
+output:
+  dir: "results/freiburg-079"
