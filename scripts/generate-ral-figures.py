@@ -169,7 +169,7 @@ def figure_realdata_combined() -> None:
         ("Freiburg 079", freiburg),
     ]
 
-    fig, axes = plt.subplots(2, 3, figsize=(7, 4), sharey="col")
+    fig, axes = plt.subplots(2, 3, figsize=(7, 4))
 
     for row, (ds_name, ds_data) in enumerate(datasets):
         for col, (metric, mlabel) in enumerate(zip(metrics, metric_labels)):
